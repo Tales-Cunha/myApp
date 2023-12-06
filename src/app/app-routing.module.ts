@@ -12,7 +12,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'consultas',
+    path: 'consultas/:coEntidade/:noEntidade',
     loadChildren: () => import('./pages/consultas/consultas.module').then( m => m.ConsultasPageModule)
   },
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
   },
   {
-    path: 'consultas-detalhes',
+    path: 'consultas-detalhes/:coEntidade/:noEntidade',
     loadChildren: () => import('./pages/consultas-detalhes/consultas-detalhes.module').then( m => m.ConsultasDetalhesPageModule)
   },
 ];

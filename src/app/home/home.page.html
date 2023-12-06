@@ -1,20 +1,9 @@
-<ion-header class="ion-no-border" [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Escolas
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content>
-  <!-- Adicionando um espaço entre o título e os botões -->
-  <div class="ion-padding">
-    <div>
-      <ion-button routerLink="/consultas">
-        Consulta
-      </ion-button>
-    </div>
+  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height:fit-content">
+    <h1 style="margin-bottom: 50%;">Escolas</h1>
+    <ion-input id="input1" style="text-align: center; border: 1px solid white; width: 50%; border-radius: 10px; margin-bottom: 16px;" placeholder="Digite algo aqui"></ion-input>
+    <ion-input id="input2" style="text-align: center; border: 1px solid white; width: 50%; border-radius: 10px;" placeholder="Digite algo aqui"></ion-input>
+    <ion-button (click)="onButtonClick()" style="margin: 30px 30px;" expand="full">Consultar</ion-button>
   </div>
-
-  <!-- Seu conteúdo aqui -->
 </ion-content>

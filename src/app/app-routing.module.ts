@@ -11,6 +11,18 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'consultas',
+    loadChildren: () => import('./pages/consultas/consultas.module').then( m => m.ConsultasPageModule)
+  },
+  {
+    path: 'favoritos',
+    loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
+  },
+  {
+    path: 'consultas-detalhes',
+    loadChildren: () => import('./pages/consultas-detalhes/consultas-detalhes.module').then( m => m.ConsultasDetalhesPageModule)
+  },
 ];
 
 @NgModule({

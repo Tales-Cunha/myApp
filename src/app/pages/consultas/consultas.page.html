@@ -10,7 +10,7 @@
         <p>Região: {{item.noRegiao}}</p>
         <P>tpDependencia: {{item.tpDependencia}}</P>
         <p>Código do Municipio: {{item.coMunicipio}}</p>
-        <ion-button fill="clear" slot="end" (click)="$event.stopPropagation();">
+        <ion-button fill="clear" slot="end" (click)="addFavorito(item)">
           Adicionar aos favoritos
         </ion-button>
       </div>

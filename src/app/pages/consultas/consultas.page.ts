@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Escola, EscolaService } from 'src/app/services/escolas.service';
 import { LoadingController } from '@ionic/angular';
-import { ActivatedRoute, Router } from '@angular/router';
-
+import { ActivatedRoute } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-consultas',
   templateUrl: './consultas.page.html',
@@ -10,7 +11,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ConsultasPage implements OnInit {
   escolas = [];
-  constructor(private escolaService: EscolaService, private loadingCtrl: LoadingController,private route:ActivatedRoute) {}
+  listaFavoritos = [];
+  
+  constructor(private escolaService: EscolaService,
+     private loadingCtrl: LoadingController,
+     private route:ActivatedRoute,
+     private dataService: DataService,
+     private alertController: AlertController) {
+    this.loadFavoritos();
+     }
   ngOnInit() {
     this.carregarEscolaFiltrada();
   }
@@ -29,6 +38,30 @@ export class ConsultasPage implements OnInit {
       loading.dismiss();
       this.escolas = res;
     });
+  }
+  async loadFavoritos(){
+    this.listaFavoritos = await this.dataService.getData();
+  }
+
+  async addFavorito(escola: Escola){
+    if (this.listaFavoritos.find(x => x.coEntidade == escola.coEntidade)) {
+    const alert = await this.alertController.create({
+      header: 'Escola Favorita',
+      message: 'Esta escola já foi adicionada aos favoritos.',
+      buttons: ['OK']
+    });
+    await alert.present();
+    } else {
+      await this.dataService.addData(escola);
+      this.loadFavoritos();
+    }
+  }
+
+  async removeFavorito(item: Escola){
+    const id = this.listaFavoritos.findIndex(x => x.coEntidade == item.coEntidade);
+    await this.dataService.removeData(id);
+    this.listaFavoritos.splice(id, 1)
+    console.log(this.listaFavoritos);
   }
   toggleCard(escola: Escola) {
     escola.expandido = !escola.expandido;

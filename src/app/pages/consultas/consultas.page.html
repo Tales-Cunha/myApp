@@ -1,14 +1,19 @@
 <ion-content>
-  <ion-card *ngFor="let item of escolas">
+  <ion-card *ngFor="let item of escolas" (click)="toggleCard(item)">
     <ion-card-header>
       <ion-card-title>{{item.noEntidade}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <p>Código inep: {{item.coEntidade}}</p>
-      <ion-card *ngIf="item.expandido">
+      <div *ngIf="item.expandido">
         <p>Localização: {{item.localizacao}}</p>
         <p>Região: {{item.noRegiao}}</p>
-        </ion-card>
+        <P>tpDependencia: {{item.tpDependencia}}</P>
+        <p>Código do Municipio: {{item.coMunicipio}}</p>
+        <ion-button fill="clear" slot="end" (click)="$event.stopPropagation();">
+          Adicionar aos favoritos
+        </ion-button>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

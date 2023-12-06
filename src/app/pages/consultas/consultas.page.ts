@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EscolaService } from 'src/app/services/escolas.service';
+import { Escola, EscolaService } from 'src/app/services/escolas.service';
 import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -30,5 +30,7 @@ export class ConsultasPage implements OnInit {
       this.escolas = res;
     });
   }
-
+  toggleCard(escola: Escola) {
+    escola.expandido = !escola.expandido;
+  }
 }

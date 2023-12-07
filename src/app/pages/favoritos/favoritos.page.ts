@@ -12,12 +12,14 @@ import { AlertController } from '@ionic/angular';
 export class FavoritosPage implements OnInit {
   listaFavoritos = [];
   constructor(private dataService: DataService, private router: Router, private alertController: AlertController) { 
-    //this.loadFavoritos(); 
   }
 
   ngOnInit() {
     this.loadFavoritos();
   }
+  /*
+    presentAlert é uma função que recebe um header e uma mensagem e cria um alerta com esses parâmetros
+  */
   async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header: header,
@@ -33,6 +35,10 @@ export class FavoritosPage implements OnInit {
       this.presentAlert('Nenhum favorito encontrado', 'Não há escolas que correspondam aos seus critérios de pesquisa.');
     }
   }
+  /*
+    removeFavorito é uma função que recebe um item e remove o item da lista de favoritos
+    Chama a função loadFavoritos para atualizar a lista de favoritos
+  */
   async removeFavorito(item){
     await this.dataService.removeData(item);
     this.loadFavoritos();

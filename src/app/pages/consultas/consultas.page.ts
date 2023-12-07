@@ -4,27 +4,30 @@ import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { AlertController } from '@ionic/angular';
+
+
 @Component({
   selector: 'app-consultas',
   templateUrl: './consultas.page.html',
   styleUrls: ['./consultas.page.scss'],
 })
+
 export class ConsultasPage implements OnInit {
   escolas = [];
   listaFavoritos = [];
   
   constructor(private escolaService: EscolaService,
-     private loadingCtrl: LoadingController,
-     private route:ActivatedRoute,
-     private dataService: DataService,
-     private alertController: AlertController) {
+    private loadingCtrl: LoadingController,
+    private route:ActivatedRoute,
+    private dataService: DataService,
+    private alertController: AlertController) {
     this.loadFavoritos();
     }
   ngOnInit() {
     this.carregarEscolaFiltrada();
   }
   /*
-   Funcao que carrega as escolas filtradas pelo nome da entidade e codigo da entidade passados como parametro
+    presentAlert é uma função que recebe um header e uma mensagem e cria um alerta com esses parâmetros
   */
   async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
@@ -35,7 +38,10 @@ export class ConsultasPage implements OnInit {
   
     await alert.present();
   }
-
+  /*
+    carregarEscolaFiltrada é uma função que carrega as escolas filtradas pelo código e nome da entidade
+    Caso não encontre nenhuma escola, é chamada a função presentAlert
+  */
   async carregarEscolaFiltrada() {
     const loading = await this.loadingCtrl.create({
       message: 'Carregando escolas...',
@@ -56,11 +62,16 @@ export class ConsultasPage implements OnInit {
       this.presentAlert('Erro', 'Ocorreu um erro ao carregar as escolas. Por favor, tente novamente mais tarde.')
     });
   }
-
+  /*
+    isFavorito é uma função que recebe uma escola e verifica se ela está na lista de favoritos 
+    e é usada para mostrar o botao de adicionar favoritos caso a escola não esteja na lista
+  */
   isFavorito(escola: Escola){
     return this.listaFavoritos.find(x => x.coEntidade == escola.coEntidade);
   }
-
+  /*
+    funções criadas com o uso do dataService para adicionar e carregar os favoritos
+  */
   async loadFavoritos(){
     this.listaFavoritos = await this.dataService.getData();
   }

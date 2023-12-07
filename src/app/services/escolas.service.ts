@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
+// Interface que define o formato dos dados recebidos da API
+
 export interface Escola {
   nuAnoCenso: number;
   coEntidade: number;
@@ -29,7 +31,7 @@ export interface Escola {
   latitude: number;
   longitude: number;
   expandido?: boolean;
-  favorito: boolean;
+  //favorito: boolean;
 }
 
 
@@ -38,11 +40,10 @@ export interface Escola {
 })
 export class EscolaService {
   constructor(private http:HttpClient) { }
-
+  // Função que recebe o código e nome da entidade e retorna as escolas filtradas
   getEscolasFiltered(coEntidade: number, noEntidade: string): Observable<Escola[]> {
     return this.http.get<Escola[]>(`${environment.apiUrl}/escolas?coEntidade=${coEntidade}&noEntidade=${encodeURIComponent(noEntidade)}`).pipe(
       catchError(error => {
-        // Trate o erro aqui
         console.error(error);
         return throwError(() => error)
       })

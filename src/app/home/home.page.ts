@@ -10,6 +10,7 @@ export class HomePage {
   constructor(private route: Router, private alertController: AlertController) {}
   /*
    Função que é chamada quando o botão é clicado e redireciona para a página de consulta
+   Faz a verificação de campos vazios e transforma o input2 em maiúsculo e sem acentos
   */
   async onButtonClick() {
     let inputElement1 = <HTMLInputElement>document.getElementById("input1");
@@ -17,7 +18,7 @@ export class HomePage {
   
     let inputvalue1 = inputElement1.value;
     let inputvalue2 = inputElement2.value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
-  
+    
     if (!inputvalue1 || !inputvalue2) {
       const alert = await this.alertController.create({
         header: 'Campos vazios',

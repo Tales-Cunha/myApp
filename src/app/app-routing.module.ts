@@ -18,11 +18,7 @@ const routes: Routes = [
   {
     path: 'favoritos',
     loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
-  },
-  {
-    path: 'consultas-detalhes/:coEntidade/:noEntidade',
-    loadChildren: () => import('./pages/consultas-detalhes/consultas-detalhes.module').then( m => m.ConsultasDetalhesPageModule)
-  },
+  }
 ];
 
 @NgModule({

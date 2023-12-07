@@ -17,8 +17,8 @@ export class ConsultasPage implements OnInit {
      private loadingCtrl: LoadingController,
      private route:ActivatedRoute,
      private dataService: DataService,) {
-      this.loadFavoritos();
-     }
+    this.loadFavoritos();
+    }
   ngOnInit() {
     this.carregarEscolaFiltrada();
   }
@@ -38,6 +38,11 @@ export class ConsultasPage implements OnInit {
       this.escolas = res;
     });
   }
+
+  isFavorito(escola: Escola){
+    return this.listaFavoritos.find(x => x.coEntidade == escola.coEntidade);
+  }
+
   async loadFavoritos(){
     this.listaFavoritos = await this.dataService.getData();
   }
@@ -48,12 +53,6 @@ export class ConsultasPage implements OnInit {
     this.loadFavoritos();
   }
 
-  async removeFavorito(item: Escola){
-    const id = this.listaFavoritos.findIndex(x => x.coEntidade == item.coEntidade);
-    await this.dataService.removeData(id);
-    this.listaFavoritos.splice(id, 1)
-    console.log(this.listaFavoritos);
-  }
   toggleCard(escola: Escola) {
     escola.expandido = !escola.expandido;
   }

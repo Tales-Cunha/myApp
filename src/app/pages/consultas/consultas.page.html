@@ -22,7 +22,7 @@
           <p>Região: {{item.noRegiao}}</p>
           <P>tpDependencia: {{item.tpDependencia}}</P>
           <p>Código do Municipio: {{item.coMunicipio}}</p>
-          <ion-button fill="clear" slot="end" (click)="addFavorito(item)">
+          <ion-button fill="clear" slot="end" (click)="addFavorito(item)" *ngIf="!isFavorito(item)">
             Adicionar aos favoritos
           </ion-button>
         </div>

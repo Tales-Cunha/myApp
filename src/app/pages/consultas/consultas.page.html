@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Escola</ion-title>
+    <ion-buttons slot="start">
+      <ion-title>Escola</ion-title>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/">Sair</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -23,8 +28,5 @@
         </div>
       </ion-card-content>
     </ion-card>
-    <ion-buttons slot="end">
-      <ion-button [routerLink]="['/favoritos']" [state]="{ coEntidade: item.coEntidade, noEntidade: item.noEntidade }">Favoritos</ion-button>
-    </ion-buttons>
   </div>
 </ion-content>

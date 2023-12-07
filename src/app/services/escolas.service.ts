@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 export interface Escola {
   nuAnoCenso: number;
@@ -38,14 +39,14 @@ export interface Escola {
 export class EscolaService {
   constructor(private http:HttpClient) { }
 
-  getEscolas(): Observable<Escola[]> {
-    return this.http.get<Escola[]>(`${environment.apiUrl}/escolas`);
-  }
-
   getEscolasFiltered(coEntidade: number, noEntidade: string): Observable<Escola[]> {
-    return this.http.get<Escola[]>(`${environment.apiUrl}/escolas`).pipe(
-      map((data: Escola[]) => data.filter(item => item.coEntidade === coEntidade && item.noEntidade === noEntidade))
+    return this.http.get<Escola[]>(`${environment.apiUrl}/escolas?coEntidade=${coEntidade}&noEntidade=${encodeURIComponent(noEntidade)}`).pipe(
+      catchError(error => {
+        // Trate o erro aqui
+        console.error(error);
+        return throwError(() => error)
+      })
     );
   }
-
+  
 }

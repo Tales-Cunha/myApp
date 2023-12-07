@@ -16,9 +16,8 @@ export class ConsultasPage implements OnInit {
   constructor(private escolaService: EscolaService,
      private loadingCtrl: LoadingController,
      private route:ActivatedRoute,
-     private dataService: DataService,
-     private alertController: AlertController) {
-    this.loadFavoritos();
+     private dataService: DataService,) {
+      this.loadFavoritos();
      }
   ngOnInit() {
     this.carregarEscolaFiltrada();
@@ -44,17 +43,9 @@ export class ConsultasPage implements OnInit {
   }
 
   async addFavorito(escola: Escola){
-    if (this.listaFavoritos.find(x => x.coEntidade == escola.coEntidade)) {
-    const alert = await this.alertController.create({
-      header: 'Escola Favorita',
-      message: 'Esta escola já foi adicionada aos favoritos.',
-      buttons: ['OK']
-    });
-    await alert.present();
-    } else {
-      await this.dataService.addData(escola);
-      this.loadFavoritos();
-    }
+    if(this.listaFavoritos.find(x => x.coEntidade == escola.coEntidade)){ return; } 
+    await this.dataService.addData(escola);
+    this.loadFavoritos();
   }
 
   async removeFavorito(item: Escola){

@@ -1,19 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Escola</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  <ion-card *ngFor="let item of escolas" (click)="toggleCard(item)">
-    <ion-card-header>
-      <ion-card-title>{{item.noEntidade}}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Código inep: {{item.coEntidade}}</p>
-      <div *ngIf="item.expandido">
-        <p>Localização: {{item.localizacao}}</p>
-        <p>Região: {{item.noRegiao}}</p>
-        <P>tpDependencia: {{item.tpDependencia}}</P>
-        <p>Código do Municipio: {{item.coMunicipio}}</p>
-        <ion-button fill="clear" slot="end" (click)="addFavorito(item)">
-          Adicionar aos favoritos
-        </ion-button>
-      </div>
-    </ion-card-content>
-  </ion-card>
+  <div *ngFor="let item of escolas">
+    <ion-card (click)="toggleCard(item)">
+      <ion-card-header>
+        <ion-card-title>{{item.noEntidade}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Código inep: {{item.coEntidade}}</p>
+        <div *ngIf="item.expandido">
+          <p>Localização: {{item.localizacao}}</p>
+          <p>Região: {{item.noRegiao}}</p>
+          <P>tpDependencia: {{item.tpDependencia}}</P>
+          <p>Código do Municipio: {{item.coMunicipio}}</p>
+          <ion-button fill="clear" slot="end" (click)="addFavorito(item)">
+            Adicionar aos favoritos
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/favoritos']" [state]="{ coEntidade: item.coEntidade, noEntidade: item.noEntidade }">Favoritos</ion-button>
+    </ion-buttons>
+  </div>
 </ion-content>

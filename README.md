@@ -34,4 +34,5 @@ ionic cap open android
 
 
 
-##
+## Tets 
+If you want to test the APK, it is available in the release, but remember that it is an unsigned APK from the Play Store

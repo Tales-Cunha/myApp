@@ -26,7 +26,7 @@ export class ConsultasPage implements OnInit {
   /*
    Funcao que carrega as escolas filtradas pelo nome da entidade e codigo da entidade passados como parametro
   */
-   async presentAlert(header: string, message: string) {
+  async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header: header,
       message: message,

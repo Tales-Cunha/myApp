@@ -10,14 +10,10 @@ import { Escola } from 'src/app/services/escolas.service';
 })
 export class FavoritosPage implements OnInit {
   listaFavoritos = [];
-  coEntidade: string;
-  noEntidade: string;
   constructor(private dataService: DataService, private router: Router) {
     this.loadFavoritos(); 
     const navigation = this.router.getCurrentNavigation();
     const state = navigation.extras.state;
-    this.coEntidade = state['coEntidade'];
-    this.noEntidade = state['noEntidade'];
   }
 
   ngOnInit() {

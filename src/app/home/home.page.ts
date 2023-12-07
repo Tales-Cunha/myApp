@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { Router} from '@angular/router';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private route: Router) {}
+  constructor(private route: Router, private alertController: AlertController) {}
   /*
    Função que é chamada quando o botão é clicado e redireciona para a página de consulta
   */
-  onButtonClick() {
+  async onButtonClick() {
     let inputElement1 = <HTMLInputElement>document.getElementById("input1");
     let inputElement2 = <HTMLInputElement>document.getElementById("input2");
   
@@ -18,7 +19,13 @@ export class HomePage {
     let inputvalue2 = inputElement2.value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
   
     if (!inputvalue1 || !inputvalue2) {
-      alert('Por favor, preencha ambos os campos.');
+      const alert = await this.alertController.create({
+        header: 'Campos vazios',
+        message: 'Por favor, preencha ambos os campos.',
+        buttons: ['OK']
+      });
+  
+      await alert.present();
       return;
     }
   

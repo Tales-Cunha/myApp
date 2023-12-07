@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-title>Escola</ion-title>
+      <ion-title style="text-align: center;">Escola</ion-title>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button routerLink="/">Sair</ion-button>
@@ -11,20 +11,22 @@
 
 <ion-content>
   <div *ngFor="let item of escolas">
-    <ion-card (click)="toggleCard(item)">
+    <ion-card (click)="toggleCard(item)" style="border: 1px solid; border-radius: 10px; margin: 10px;">
       <ion-card-header>
-        <ion-card-title>{{item.noEntidade}}</ion-card-title>
+        <ion-card-title style="text-align: center;">{{item.noEntidade}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>Código inep: {{item.coEntidade}}</p>
         <div *ngIf="item.expandido">
+          <p>Código inep: {{item.coEntidade}}</p>
           <p>Localização: {{item.localizacao}}</p>
           <p>Região: {{item.noRegiao}}</p>
           <P>tpDependencia: {{item.tpDependencia}}</P>
           <p>Código do Municipio: {{item.coMunicipio}}</p>
-          <ion-button fill="clear" slot="end" (click)="addFavorito(item)" *ngIf="!isFavorito(item)">
-            Adicionar aos favoritos
-          </ion-button>
+          <div style="display: flex; justify-content: center; margin-top: 20px;">
+            <ion-button fill="clear" slot="end" (click)="addFavorito(item)" *ngIf="!isFavorito(item)">
+              Adicionar aos favoritos
+            </ion-button>
+          </div>
         </div>
       </ion-card-content>
     </ion-card>

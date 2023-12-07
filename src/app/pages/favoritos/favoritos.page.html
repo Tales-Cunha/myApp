@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>Favoritos</ion-title>
+    <ion-title style="text-align: center;">Escolas Favoritas</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +11,20 @@
   <ion-list>
     <ion-item-sliding *ngFor="let item of listaFavoritos">
       <ion-item (click)="toggleCard(item)">
-        <ion-label>{{item.noEntidade}}</ion-label>
+        <ion-card style="margin: 0 auto; width: 90%;">
+          <ion-card-header>
+            <ion-card-title style="text-align: center;">{{item.noEntidade}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div *ngIf="item.expandido">
+              <p>Código inep: {{item.coEntidade}}</p>
+              <p>Localização: {{item.localizacao}}</p>
+              <p>Região: {{item.noRegiao}}</p>
+              <P>tpDependencia: {{item.tpDependencia}}</P>
+              <p>Código do Municipio: {{item.coMunicipio}}</p>
+            </div>
+          </ion-card-content>
+        </ion-card>
       </ion-item>
       <ion-item-options side="end">
         <ion-item-option color="danger" (click)="removeFavorito(item)">

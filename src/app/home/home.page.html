@@ -1,9 +1,10 @@
 <ion-content>
   <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height:fit-content">
-    <h1 style="margin-bottom: 50%;">Escolas</h1>
-    <ion-input id="input1" style="text-align: center; border: 1px solid white; width: 60%; border-radius: 10px; margin-bottom: 16px;" placeholder="Digite o Código da Escola" type = "number"></ion-input>
-    <ion-input id="input2" style="text-align: center; border: 1px solid white; width: 60%; border-radius: 10px;" placeholder="Digite o nome da Escola" type="string"></ion-input>
-    <ion-button (click)="onButtonClick()" style="margin: 30px 30px;" expand="full">Consultar</ion-button>
-    <ion-button routerLink="/favoritos" style="margin: 30px 30px;" expand="full">Ver Favoritos</ion-button>
+    <h1 style="margin-bottom: 30%; margin-top: 20%;">Escolas</h1>
+    <ion-input id="input1" style="text-align: center; border: 1px solid; width: 60%; border-radius: 10px; margin-bottom: 16px;" placeholder="Digite o Código da Escola" type = "number"></ion-input>
+    <ion-input id="input2" style="text-align: center; border: 1px solid; width: 60%; border-radius: 10px;" placeholder="Digite o nome da Escola" type="string"></ion-input>
+    <ion-button (click)="onButtonClick()" style="margin: 30px 30px; border: 2px solid; border-radius: 10px" expand="full">Consultar</ion-button>
+    <p style="text-align: center;">OU</p>
+    <ion-button routerLink="/favoritos" style="margin: 30px 30px; border: 2px solid; border-radius: 10px" expand="full">Ver Favoritos</ion-button>
   </div>
 </ion-content>
